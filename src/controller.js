@@ -26,9 +26,19 @@ class LibroController {
         const { id_libro } = req.params;
         const [result] = await pool.query(`DELETE FROM libros WHERE id_libro = ?`, [id_libro]);
         if (result.affectedRows === 0) {
-            res.status(404).json({ message: 'Libro no encontrado' });
+            res.status(404).json({ message: 'ID Libro no encontrado' });
         } else {
-            res.json({ message: 'Libro eliminado' });
+            res.json({ message: 'Libro eliminado mediante ID' });
+        }
+    }
+
+    async deleteByIsbn(req, res) {
+        const { isbn } = req.params;
+        const [result] = await pool.query(`DELETE FROM libros WHERE isbn = ?`, [isbn]);
+        if (result.affectedRows === 0) {
+            res.status(404).json({ message: 'ISBN Libro no encontrado' });
+        } else {
+            res.json({ message: 'Libro eliminado mediante ISBN' });
         }
     }
 
