@@ -18,9 +18,19 @@ class LibroController {
 
     async add(req, res) {
         const { nombre, autor, categoria, fecha_publicacion, isbn } = req.body;
-        const [result] = await pool.query(`INSERT INTO libros (nombre, autor, categoria, fecha_publicacion, isbn) VALUES (?, ?, ?, ?, ?)`, [nombre, autor, categoria, fecha_publicacion, isbn]);
-        res.json({ message: 'Libro insertado', id: result.insertId });
-    }
+        try {
+            const [result] = await pool.query(`INSERT INTO libros (nombre, autor, categoria, fecha_publicacion, isbn) VALUES (?, ?, ?, ?, ?)`, [nombre, autor, categoria, fecha_publicacion, isbn]);
+            res.status(201).json({ message: 'Libro insertado', id: result.insertId });
+        } catch (error) {
+            console.error('Error al insertar el libro:', error);
+    
+            if (error.code === 'ER_DUP_ENTRY') {
+                res.status(400).json({ message: 'Error: El libro con este ISBN ya existe.' });
+            } else {
+                res.status(500).json({ message: 'Error al insertar el libro', error: error.message });
+            }
+        }
+    }    
 
     async delete(req, res) {
         const { id_libro } = req.params;
