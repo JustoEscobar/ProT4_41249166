@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-08-2024 a las 15:30:52
+-- Tiempo de generación: 05-08-2024 a las 16:27:21
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -41,11 +41,9 @@ CREATE TABLE `libros` (
 --
 
 INSERT INTO `libros` (`id_libro`, `nombre`, `autor`, `categoria`, `fecha_publicacion`, `isbn`) VALUES
-(1, 'Caperucita Roja', 'Charles Perrault', 'Infantil', 1967, '1234abcd'),
-(2, 'Los tres chanchitos', 'Frederick Warne', 'Infantil', 1949, '12345abcde'),
-(3, 'Los 3 chanchitos', 'Molino', 'Infantil', 2023, '12345abcde'),
-(5, 'Rapunzel', 'Desconocido', 'Infantil', 1914, '123456'),
-(6, 'Inundacion', 'Jk Rowlings', 'Suspenso', 1998, '123xyz');
+(1, 'Blancanieves', 'Desconocido', 'Infantil', 1987, '123abc'),
+(2, 'Caperucita Roja', 'Desconocido', 'Infantil', 1956, '1234abcd'),
+(3, 'Harry Potter', 'J.K Rowlings', 'Terror', 2003, '12345abcde');
 
 --
 -- Índices para tablas volcadas
@@ -55,7 +53,8 @@ INSERT INTO `libros` (`id_libro`, `nombre`, `autor`, `categoria`, `fecha_publica
 -- Indices de la tabla `libros`
 --
 ALTER TABLE `libros`
-  ADD PRIMARY KEY (`id_libro`);
+  ADD PRIMARY KEY (`id_libro`),
+  ADD UNIQUE KEY `isbn` (`isbn`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
