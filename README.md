@@ -1,6 +1,7 @@
 # Actividad integradora N° 4 - REST API
 # Utilizando Node Js, Express Js y Postman para pruebas
 
+* Comando para instalar node_module: npm install
 * Comando para correr servidor: npm run dev
 * Host: localhost
 * Port: 5000
